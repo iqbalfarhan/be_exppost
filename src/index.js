@@ -17,6 +17,10 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", authMiddleware, userRouter);
 app.use("/api/post", authMiddleware, postRouter);
 
+app.use("*", (req, res) => {
+  res.status(404).json({ message: "page not found" });
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
